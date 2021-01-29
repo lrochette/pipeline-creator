@@ -1,3 +1,5 @@
+spec:
+  triggers:
     - name: acceptance-india
       type: git
       repo: lrochette/pipeline-creator

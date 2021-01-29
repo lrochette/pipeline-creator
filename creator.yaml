@@ -20,6 +20,27 @@ steps:
       - |-
         echo "SPEC ${{SPEC}}"
         echo "TRIGGERS ${{TRIGGERS}}"
-        for f in "${{TRIGGERS}}" ; do
-          echo $f
+        process_dir() {
+          echo  "process directory $f"
+          set curdir=`pwd`
+          cd $f
+          for FILE in * ; do
+            process_file $FILE
+          done
+          cd $curdir
+        }
+        process_file() {
+          if [ -f $1 ]; then
+            echo  "process file $1"
+            yq merge $SPEC $1
+            return
+          fi
+          if [ -d $1 ] ; then
+            process_dir $f
+            return
+          fi
+          echo "Unknown file $f - IGNORE"
+        }
+        for f in `echo $TRIGGERS` ; do
+            process_file $f
         done
