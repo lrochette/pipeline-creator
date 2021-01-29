@@ -17,5 +17,5 @@ steps:
     working_directory: ${{REPO}}
     commands:
       - cat ${{SPEC}}
-      - which perl
+      - python --version
     stage: clone
