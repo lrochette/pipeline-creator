@@ -23,10 +23,11 @@ steps:
     title: "Creating pipeline"
     image: codefresh/cli
     working_directory: ${{REPO}}
+    stage: clone
     commands:
       - echo "SPEC: ${{SPEC}}"
       - echo "TRIGGERS: ${{TRIGGERS}}"
-      - for f in "${{TRIGGERS}}" ; do
+      - |-
+        for f in "${{TRIGGERS}}" ; do
           echo $f
         done
-    stage: clone
