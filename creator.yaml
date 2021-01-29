@@ -1,7 +1,7 @@
 version: "1.0"
 
 stages:
-
+  - clone
 
 steps:
   clone:
@@ -9,6 +9,7 @@ steps:
     type: "git-clone"
     repo: "${{ORG}}/${{REPO}}"
     revision: "master"
+    stage: clone
 
   create_pipeline:
     title: "Creating pipeline"
@@ -17,4 +18,4 @@ steps:
     commands:
       - cat ${{SPEC}}
       - which perl
-      
+    stage: clone
