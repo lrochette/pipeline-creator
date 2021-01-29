@@ -17,9 +17,9 @@ steps:
     working_directory: ${{REPO}}
     stage: clone
     commands:
-      - echo "SPEC: ${{SPEC}}"
-      - echo "TRIGGERS: ${{TRIGGERS}}"
       - |-
+        echo "SPEC ${{SPEC}}"
+        echo "TRIGGERS ${{TRIGGERS}}"
         for f in "${{TRIGGERS}}" ; do
           echo $f
         done
