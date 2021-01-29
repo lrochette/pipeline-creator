@@ -11,14 +11,6 @@ steps:
     revision: "master"
     stage: clone
 
-  # parse_triggers:
-  #   title: "Parsing the tirggers"
-  #   image: perl
-  #   working_directory: ${{REPO}}
-  #   commands:
-  #     - perl -v
-  #     - perl -e parse_triggers.pl
-
   create_pipeline:
     title: "Creating pipeline"
     image: codefresh/cli
