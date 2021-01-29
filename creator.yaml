@@ -16,3 +16,5 @@ steps:
     working_directory: ${{REPO}}
     commands:
       - cat ${{SPEC}}
+      - which perl
+      
