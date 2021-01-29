@@ -1,0 +1,18 @@
+version: "1.0"
+
+stages:
+
+
+steps:
+  clone:
+    title: "Cloning repository"
+    type: "git-clone"
+    repo: "${{ORG}}/${{REPO}}"
+    revision: "master"
+
+  create_pipeline:
+    title: "Creating pipeline"
+    image: codefresh/cli
+    working_directory: ${{REPO}}
+    commands:
+      - cat ${{SPEC}}
