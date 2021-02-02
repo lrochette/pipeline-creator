@@ -34,8 +34,8 @@ steps:
         process_file() {
           if [ -f $1 ]; then
             echo  "process file $1"
-            yq -s -y '.[0].spec.triggers = if .[0].spec.triggers? then [.[].spec.triggers | add]  else  [.[1].spec.triggers | add] end | .[0] ' $SPEC $1 > full.yml
-            mv total.yml $SPEC
+            yq -s -y '.[0].spec.triggers = if .[0].spec.triggers? then [.[].spec.triggers | add]  else  [.[1].spec.triggers | add] end | .[0] ' $SPEC $1 > $CF_BUILD_ID.yml
+            mv $CF_BUILD_ID.yml $SPEC
             return
           fi
           if [ -d $1 ] ; then
