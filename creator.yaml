@@ -18,8 +18,6 @@ steps:
     stage: clone
     commands:
       - |-
-        echo "SPEC ${{SPEC}}"
-        echo "TRIGGERS ${{TRIGGERS}}"
         process_dir() {
           echo  "Processing trigger directory $1"
           for FILE in $1/* ; do
@@ -28,7 +26,7 @@ steps:
         }
         process_file() {
           if [ -f $1 ]; then
-            echo  "Process trigger file $1"
+            echo  "Processing trigger file $1"
             if [ $count -eq 1 ] ; then
               yq -s -y '.[0].spec.triggers = [.[1].spec.triggers | add] | .[0]' $curdir/$SPEC $1 > $CF_BUILD_ID.yml
             else
@@ -42,7 +40,7 @@ steps:
             process_dir $1
             return
           fi
-          echo "WARNING: Unknown trigger file $1 - IGNORE"
+          echo "WARNING: Unknown trigger file $1"
         }
         export curdir=`pwd`
         export count=1
