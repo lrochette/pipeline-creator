@@ -37,7 +37,7 @@ steps:
             process_dir $1
             return
           fi
-          echo "Unknown file $f - IGNORE"
+          echo "Unknown file $1 - IGNORE"
         }
         for f in `echo $TRIGGERS` ; do
             process_file $f
