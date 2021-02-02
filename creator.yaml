@@ -3,8 +3,6 @@ version: "1.0"
 stages:
   - clone
 
-spec:
-
 steps:
   clone:
     title: "Cloning repository"
