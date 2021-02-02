@@ -8,6 +8,13 @@ stages:
   - "build"
   - "test"
 
+metadata:
+  name: tala/full
+  project: tala
+  projectId: 60132e32468eb5568134785b
+  accountId: 600edc0bdffeb2bc4981d15a
+  deprecate: {}
+
 steps:
   clone:
     title: "Cloning repository"
