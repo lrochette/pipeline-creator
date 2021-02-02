@@ -4,41 +4,40 @@
 version: "1.0"
 kind: pipeline
 metadata:
-  name: tala/full
-  project: tala
-  projectId: 60132e32468eb5568134785b
-  accountId: 600edc0bdffeb2bc4981d15a
-  deprecate: {}
+  name: Tala/full
+  project: Tala
+
+
 # Stages can help you organize your steps in stages
-stages:
-  - "clone"
-  - "build"
-  - "test"
+spec:
+  stages:
+    - "clone"
+    - "build"
+    - "test"
 
 
+  steps:
+    clone:
+      title: "Cloning repository"
+      type: "git-clone"
+      repo: "https://github.com/codefresh-io/cli/"
+      revision: "master"
+      stage: "clone"
 
-steps:
-  clone:
-    title: "Cloning repository"
-    type: "git-clone"
-    repo: "https://github.com/codefresh-io/cli/"
-    revision: "master"
-    stage: "clone"
+    build:
+      title: "Building Docker image"
+      type: "build"
+      image_name: "codefresh-io/cli"
+      working_directory: "${{clone}}"
+      tag: "latest"
+      dockerfile: "Dockerfile"
+      stage: "build"
 
-  build:
-    title: "Building Docker image"
-    type: "build"
-    image_name: "codefresh-io/cli"
-    working_directory: "${{clone}}"
-    tag: "latest"
-    dockerfile: "Dockerfile"
-    stage: "build"
-
-  test:
-    title: "Running test"
-    type: "freestyle" # Run any command
-    image: "codefresh-io/cli" # The image in which command will be executed
-    working_directory: "${{clone}}" # Running command where code cloned
-    commands:
-      - "ls"
-    stage: "test"
+    test:
+      title: "Running test"
+      type: "freestyle" # Run any command
+      image: "codefresh-io/cli" # The image in which command will be executed
+      working_directory: "${{clone}}" # Running command where code cloned
+      commands:
+        - "ls"
+      stage: "test"

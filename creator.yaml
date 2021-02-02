@@ -50,5 +50,5 @@ steps:
         for f in `echo $TRIGGERS` ; do
             process_file $f
         done
-        cat $SPEC
+        # cat $SPEC
         codefresh create pipeline -f $SPEC || codefresh replace -f $SPEC
