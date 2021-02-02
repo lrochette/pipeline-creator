@@ -21,15 +21,14 @@ steps:
         echo "SPEC ${{SPEC}}"
         echo "TRIGGERS ${{TRIGGERS}}"
         process_dir() {
-          echo  "process directory $1"
+          echo  "Processing trigger directory $1"
           for FILE in $1/* ; do
             process_file $FILE
           done
         }
         process_file() {
           if [ -f $1 ]; then
-            echo  "process file $1"
-            cat $1
+            echo  "Process trigger file $1"
             if [ $count -eq 1 ] ; then
               yq -s -y '.[0].spec.triggers = [.[1].spec.triggers | add] | .[0]' $curdir/$SPEC $1 > $CF_BUILD_ID.yml
             else
@@ -43,13 +42,11 @@ steps:
             process_dir $1
             return
           fi
-          echo "Unknown file $1 - IGNORE"
-          cf_export steps.create_pipeline.result="warning"
+          echo "WARNING: Unknown trigger file $1 - IGNORE"
         }
         export curdir=`pwd`
         export count=1
         for f in `echo $TRIGGERS` ; do
             process_file $f
         done
-        # cat $SPEC
         codefresh create pipeline -f $SPEC || codefresh replace -f $SPEC
