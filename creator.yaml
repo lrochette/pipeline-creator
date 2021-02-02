@@ -21,13 +21,10 @@ steps:
         echo "SPEC ${{SPEC}}"
         echo "TRIGGERS ${{TRIGGERS}}"
         process_dir() {
-          echo  "process directory $f"
-          set curdir=`pwd`
-          cd $f
-          for FILE in * ; do
-            process_file $FILE
+          echo  "process directory $1"
+          for FILE in $1/* ; do
+            process_file $1/$FILE
           done
-          cd $curdir
         }
         process_file() {
           if [ -f $1 ]; then
@@ -37,7 +34,7 @@ steps:
             return
           fi
           if [ -d $1 ] ; then
-            process_dir $f
+            process_dir $1
             return
           fi
           echo "Unknown file $f - IGNORE"
