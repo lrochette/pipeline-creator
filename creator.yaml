@@ -20,4 +20,4 @@ steps:
       - /merge.sh
     environment:
       - TRIGGERS="foobar trig1.yml trig2.yml TRIGGERS"
-      - SPEC="spec.yml"
+      - SPEC=spec.yml
