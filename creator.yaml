@@ -51,4 +51,4 @@ steps:
             process_file $f
         done
         cat $SPEC
-        codefresh create pipeline  -f $SPEC || codefresh replace -f $SPEC
+        codefresh create pipeline  "Tala/pipe-$CF_BUILD_ID" -f $SPEC.yml || codefresh replace -f $SPEC
