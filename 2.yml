@@ -96,39 +96,3 @@ spec:
         cpu: 1000m
         memory: 1024Mi
         dindStorage: nullGi
-    - name: triga
-      type: git
-      repo: lrochette/pipeline-creator
-      events:
-        - push.heads
-      pullRequestAllowForkEvents: false
-      commentRegex: /.*/gi
-      branchRegex: /branch-a/gi
-      branchRegexInput: regex
-      provider: github
-      disabled: true
-      options:
-        noCache: false
-        noCfCache: false
-        resetVolume: false
-      verified: true
-      context: github
-      contexts: []
-    - name: trigb
-      type: git
-      repo: lrochette/pipeline-creator
-      events:
-        - push.heads
-      pullRequestAllowForkEvents: false
-      commentRegex: /.*/gi
-      branchRegex: /branch-b/gi
-      branchRegexInput: regex
-      provider: github
-      disabled: true
-      options:
-        noCache: false
-        noCfCache: false
-        resetVolume: false
-      verified: true
-      context: github
-      contexts: []
