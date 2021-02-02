@@ -44,6 +44,7 @@ steps:
             return
           fi
           echo "Unknown file $1 - IGNORE"
+          cf_export steps.create_pipeline.result="warning"
         }
         export curdir=`pwd`
         export count=1
