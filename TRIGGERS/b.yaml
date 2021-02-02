@@ -1,3 +1,5 @@
+spec:
+  triggers:
     - name: trigb
       type: git
       repo: lrochette/pipeline-creator
