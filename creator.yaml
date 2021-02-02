@@ -13,7 +13,7 @@ steps:
 
   create_pipeline:
     title: "Creating pipeline"
-    image: lrochette/ptm
+    image: lrochette/ptm:pipeline_trigger_merge
     working_directory: ${{clone}}
     stage: clone
     commands:
