@@ -31,11 +31,11 @@ steps:
             echo  "process file $1"
             cat $1
             if [ $count -eq 1 ] ; then
-              yq -s -y '.[0].spec.triggers = [.[1].spec.triggers | add] | .[0]' $curdir/$SPEC $1 > $count.yml
+              yq -s -y '.[0].spec.triggers = [.[1].spec.triggers | add] | .[0]' $curdir/$SPEC $1 > $CF_BUILD_ID.yml
             else
-              yq -s -y '.[0].spec.triggers = [.[].spec.triggers |.[]] | .[0]' $curdir/$SPEC $1 > $count.yml
+              yq -s -y '.[0].spec.triggers = [.[].spec.triggers |.[]] | .[0]' $curdir/$SPEC $1 > $CF_BUILD_ID.yml
             fi
-            cp $count.yml $curdir/$SPEC
+            mv $CF_BUILD_ID.yml $curdir/$SPEC
             count=$(expr $count + 1)
             return
           fi
