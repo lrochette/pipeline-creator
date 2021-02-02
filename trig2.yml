@@ -1,3 +1,5 @@
+spec:
+  triggers:
     - name: acceptance-mx
       type: git
       repo: lrochette/pipeline-creator

@@ -3,6 +3,8 @@ version: "1.0"
 stages:
   - clone
 
+spec:
+
 steps:
   clone:
     title: "Cloning repository"
@@ -32,7 +34,8 @@ steps:
         process_file() {
           if [ -f $1 ]; then
             echo  "process file $1"
-            yq merge $SPEC $1
+            yq -s -y '.[0].spec.triggers = if .[0].spec.triggers? then [.[].spec.triggers | add]  else  [.[1].spec.triggers | add] end | .[0] ' $SPEC $1 > full.yml
+            mv total.yml $SPEC
             return
           fi
           if [ -d $1 ] ; then
@@ -44,3 +47,4 @@ steps:
         for f in `echo $TRIGGERS` ; do
             process_file $f
         done
+        cat $SPEC
