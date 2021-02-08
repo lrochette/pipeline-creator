@@ -12,7 +12,7 @@ steps:
     stage: clone
 
   create_pipeline:
-    type: laurent-cf/pipeline_trigger_merge:1.0
+    type: laurent-cf/pipeline_trigger_merge
     title: "Creating pipeline"
     working_directory: ${{clone}}
     stage: clone
