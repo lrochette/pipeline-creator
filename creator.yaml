@@ -17,5 +17,5 @@ steps:
     working_directory: ${{clone}}
     stage: clone
     arguments:
-      - TRIGGERS: foobar trig1.yml trig2.yml TRIGGERS
-      - SPEC: spec.yml
+      TRIGGERS: foobar trig1.yml trig2.yml TRIGGERS
+      SPEC: spec.yml
