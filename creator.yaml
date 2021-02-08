@@ -12,12 +12,10 @@ steps:
     stage: clone
 
   create_pipeline:
-    type: laurent-cf/pipeline_trigger_merge
+    type: laurent-cf/pipeline_trigger_merge:1.0
     title: "Creating pipeline"
     working_directory: ${{clone}}
     stage: clone
-    commands:
-      - /merge.sh
     arguments:
-      - TRIGGERS=foobar trig1.yml trig2.yml TRIGGERS
-      - SPEC=spec.yml
+      - TRIGGERS: foobar trig1.yml trig2.yml TRIGGERS
+      - SPEC: spec.yml
