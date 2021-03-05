@@ -11,11 +11,23 @@ steps:
     revision: "master"
     stage: clone
 
+  set-var:
+    image: "codefresh/cli"
+    commands:
+        - cf_export FOOBAR=weird
+
   create_pipeline:
     type: pipeline-trigger-merge
     title: "Creating pipeline"
     working_directory: ${{clone}}
     stage: clone
+    commands:
+      - env
     arguments:
       TRIGGERS: foobar trig1.yml trig2.yml TRIGGERS
       SPEC: spec.yml
+
+  read-var:
+    image: "codefresh/cli"
+    commands:
+        - env
