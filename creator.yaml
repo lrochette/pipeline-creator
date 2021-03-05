@@ -13,6 +13,7 @@ steps:
 
   set-var:
     image: "codefresh/cli"
+    stage: clone
     commands:
         - cf_export FOOBAR=weird
 
@@ -29,5 +30,6 @@ steps:
 
   read-var:
     image: "codefresh/cli"
+    stage: clone
     commands:
         - env
